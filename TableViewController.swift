@@ -21,6 +21,7 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.separatorStyle = .none
         return longTexts.count
     }
     
@@ -31,6 +32,13 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = longTexts[indexPath.row]
 
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowNext" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.longTexts = longTexts
+        }
     }
 
 }
